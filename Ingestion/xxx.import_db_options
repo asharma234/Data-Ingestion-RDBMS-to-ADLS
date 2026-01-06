@@ -1,0 +1,8 @@
+#import
+-Dhadoop.security.credential.provider.path=jceks://xxxx/xxxx/xxxx/pwdfile/xxx_xxxdbd.password.jecks
+--connect 
+"jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=host_name)(PORT=xxxx))(ADDRESS=(PROTOCOL=TCP)(HOST=host_name2)(PORT=xxxx)))(CONNECT_DATA=(SERVICE_NAME=xxxx_rep)))"
+--username 
+xxx_USER
+--password-alias 
+mydb.password.alias
