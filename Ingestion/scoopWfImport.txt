@@ -1,0 +1,29 @@
+import
+-Dorg.apache.sqoop.splitter.allow_text_splitter=true
+-D
+mapred.child.java.opts="-Djava.security.egd=file:/dev/../dev/urandom"
+--options-file
+${XXX_SQOOP_OPTIONS_FILE}
+--query
+"SELECT XXX_UID, PER_XXX_ID, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD HH24:MI:SS')  as JOIN_DATE, USR_CREATED, TO_CHAR(CREATED, 'YYYY-MM-DD HH24:MI:SS')  as CREATED, TO_CHAR(XXX_DATE, 'YYYY-MM-DD HH24:MI:SS')  as XXX_DATE,  FROM XXX_DB.TABLE WHERE (TRUNC(CREATED) BETWEEN TO_DATE('${START_DATE}', 'yyyy-mm-dd HH24:MI:SS') AND TO_DATE('${END_DATE}', 'yyyy-mm-dd HH24:MI:SS') OR TRUNC(CHANGED) BETWEEN TO_DATE('${START_DATE}', 'yyyy-mm-dd HH24:MI:SS') AND TO_DATE ('${END_DATE}', 'yyyy-mm-dd HH24:MI:SS')) AND $CONDITIONS"
+--map-column-java
+XXX_UID=String,PER_XXX_ID=String
+--enclosed-by
+'\"'
+--split-by
+to_Char(CREATED,'HH24') 
+--null-string
+'\\N'
+--null-non-string
+'\\N'
+--class-name
+PROGRAMME_MEMBERSHIPS
+--compress
+--compression-codec
+org.apache.hadoop.io.compress.SnappyCodec
+--target-dir
+${PATH_CRIS_PROGRAMME_MEMBERSHIPS}
+--boundary-query
+"select 0,24 from dual"
+--num-mappers
+24
