@@ -1,0 +1,4 @@
+START_DATE - ${coord:formatTime(coord:dateOffset(coord:nominalTime(), -15, 'HOUR'), 'yyyy-MM-dd')}
+END_DATE - ${coord:formatTime(coord:dateOffset(coord:nominalTime(), 4, 'HOUR'), 'yyyy-MM-dd')}
+DEST_PATH - ADLSPATH/TABLE_NAME
+XXX_SQOOP_OPTIONS_FILE = xxx_import_db_options
